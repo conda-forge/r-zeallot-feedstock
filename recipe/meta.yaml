@@ -7,26 +7,25 @@ package:
   version: {{ version|replace("-", "_") }}
 
 source:
-  fn: zeallot_{{ version }}.tar.gz
   url:
     - {{ cran_mirror }}/src/contrib/zeallot_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/zeallot/zeallot_{{ version }}.tar.gz
   sha256: 439f1213c97c8ddef9a1e1499bdf81c2940859f78b76bc86ba476cebd88ba1e9
 
 build:
+  merge_build_host: True  # [win]
+  number: 1003
   noarch: generic
-  number: 1002
-
   rpaths:
     - lib/R/lib/
     - lib/
 
 requirements:
   build:
-
+    - {{ posix }}zip               # [win]
+    - cross-r-base {{ r_base }}    # [build_platform != target_platform]
   host:
     - r-base
-
   run:
     - r-base
 
@@ -39,17 +38,34 @@ about:
   home: https://github.com/nteetor/zeallot
   license: MIT
   summary: Provides a %<-% operator to perform multiple, unpacking, and destructuring assignment
-    in R. The  operator unpacks the right-hand side of an assignment into multiple values
-    and assigns these values to  variables on the left-hand side of the assignment.
+    in R. The operator unpacks the right-hand side of an assignment into multiple values
+    and assigns these values to variables on the left-hand side of the assignment.
   license_family: MIT
-  license_file: LICENSE.txt
+  license_file:
+    - '{{ environ["PREFIX"] }}/lib/R/share/licenses/MIT'
+    - LICENSE
 
 extra:
   recipe-maintainers:
     - conda-forge/r
-    - johanneskoester
-    - bgruening
-    - daler
-    - jdblischak
-    - cbrueffer
-    - zamorarr 
+    - zamorarr
+
+# Package: zeallot
+# Type: Package
+# Title: Multiple, Unpacking, and Destructuring Assignment
+# Version: 0.1.0
+# Authors@R: c( person(given = "Nathan", family = "Teetor", email = "nathanteetor@gmail.com", role = c("aut", "cre")), person(given = "Paul", family = "Teetor", role = "ctb"))
+# Description: Provides a %<-% operator to perform multiple, unpacking, and destructuring assignment in R. The operator unpacks the right-hand side of an assignment into multiple values and assigns these values to variables on the left-hand side of the assignment.
+# URL: https://github.com/nteetor/zeallot
+# BugReports: https://github.com/nteetor/zeallot/issues
+# License: MIT + file LICENSE
+# Encoding: UTF-8
+# RoxygenNote: 6.0.1
+# VignetteBuilder: knitr
+# Suggests: testthat, knitr, rmarkdown, purrr, magrittr
+# NeedsCompilation: no
+# Packaged: 2018-01-27 17:18:33 UTC; nteetor
+# Author: Nathan Teetor [aut, cre], Paul Teetor [ctb]
+# Maintainer: Nathan Teetor <nathanteetor@gmail.com>
+# Repository: CRAN
+# Date/Publication: 2018-01-28 16:14:13 UTC
