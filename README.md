@@ -1,11 +1,11 @@
-About r-zeallot
-===============
+About r-zeallot-feedstock
+=========================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/r-zeallot-feedstock/blob/main/LICENSE.txt)
 
 Home: https://github.com/nteetor/zeallot
 
 Package license: MIT
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/r-zeallot-feedstock/blob/main/LICENSE.txt)
 
 Summary: Provides a %<-% operator to perform multiple, unpacking, and destructuring assignment in R. The operator unpacks the right-hand side of an assignment into multiple values and assigns these values to variables on the left-hand side of the assignment.
 
